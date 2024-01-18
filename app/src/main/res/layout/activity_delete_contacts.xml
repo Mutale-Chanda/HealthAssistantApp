@@ -6,6 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".DeleteContactsActivity">
 
+    <ImageView
+        android:id="@+id/emptyIconDel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:alpha="0.1"
+        android:src="@drawable/empty_24"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/emptyDeleteContactsTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/emptyIconDel"
+        android:layout_centerHorizontal="true"
+        android:alpha="0.4"
+        android:text="No Contacts"
+        android:textSize="20sp"
+        android:visibility="gone" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/deleteContactsRV"
         android:layout_width="match_parent"

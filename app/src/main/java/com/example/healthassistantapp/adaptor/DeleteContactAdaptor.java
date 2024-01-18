@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,10 +22,15 @@ public class DeleteContactAdaptor extends RecyclerView.Adapter<DeleteContactView
     private final Context context;
     private List<Contact> contactList;
     private final DatabaseHelper db;
-    public DeleteContactAdaptor(Context context, List<Contact> contactList) {
+    TextView emptyText;
+    ImageView emptyImg;
+
+    public DeleteContactAdaptor(Context context, List<Contact> contactList, TextView textView, ImageView icon) {
         this.context = context;
         this.contactList = contactList;
         db = new DatabaseHelper(context);
+        emptyImg = icon;
+        emptyText = textView;
     }
 
     @NonNull
@@ -52,9 +59,20 @@ public class DeleteContactAdaptor extends RecyclerView.Adapter<DeleteContactView
                         contactList.remove(adaptorPosition);
                         notifyItemRemoved(adaptorPosition);
                         notifyItemRangeChanged(adaptorPosition, getItemCount());
+                        toggleIconVisibility();
                     }
                 }
             });
+        }
+    }
+
+    private void toggleIconVisibility() {
+        if(contactList.isEmpty()){
+            emptyImg.setVisibility(View.VISIBLE);
+            emptyText.setVisibility(View.VISIBLE);
+        }else{
+            emptyImg.setVisibility(View.GONE);
+            emptyText.setVisibility(View.GONE);
         }
     }
 

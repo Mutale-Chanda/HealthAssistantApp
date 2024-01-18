@@ -40,7 +40,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "CREATE TABLE " + TABLE_NAME +
                         " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         COLUMN_NAME + " TEXT, " +
-                        COLUMN_NUMBER + " TEXT);";
+                        COLUMN_NUMBER + " TEXT UNIQUE);";
 
         String messageQuery =
                 "CREATE TABLE " + MSG_TABLE_NAME +
@@ -94,12 +94,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         if(getContactsCount() < 3) {
-            ContentValues values = new ContentValues();
-            values.put(COLUMN_NAME, contact.getContactName());
-            values.put(COLUMN_NUMBER, contact.getContactNumber());
-            db.insert(TABLE_NAME, null, values);
-            db.close();
-            return true;
+            if(!isDuplicate(contact.getContactNumber())) {
+                ContentValues values = new ContentValues();
+                values.put(COLUMN_NAME, contact.getContactName());
+                values.put(COLUMN_NUMBER, contact.getContactNumber());
+                db.insert(TABLE_NAME, null, values);
+                db.close();
+                return true;
+            }else{
+                Toast.makeText(context, "Contact number already exists", Toast.LENGTH_SHORT).show();
+                return false;
+            }
         }else {
             Toast.makeText(context, "You can only add up to 3 contacts.", Toast.LENGTH_SHORT).show();
             return false;
@@ -132,6 +137,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int count = cursor.getCount();
         cursor.close();
         return count;
+    }
+
+    public boolean isDuplicate(String contact){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_NUMBER + " = '" + contact + "'";
+        Cursor cursor = db.rawQuery(query, null);
+
+        if(cursor.getCount() > 0){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public boolean delete(int contactID){
