@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+app:cardCornerRadius="8dp"
+app:cardUseCompatPadding="true">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/deleteContactID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="8dp"
+        android:text="5"
+        android:textColor="@color/black"
+        android:textSize="50sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_toEndOf="@id/deleteContactID"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/deleteContactName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Man Chanda"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/deleteContactNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0976731006"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/deleteContactBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_delete"
+        android:layout_alignParentEnd="true"
+        android:layout_centerInParent="true"
+        android:layout_marginEnd="8dp"/>
+</RelativeLayout>
+</androidx.cardview.widget.CardView>
