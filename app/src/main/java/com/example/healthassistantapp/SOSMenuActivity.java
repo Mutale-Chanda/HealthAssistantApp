@@ -1,24 +1,36 @@
 package com.example.healthassistantapp;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class SOSMenuActivity extends AppCompatActivity {
+
+    CardView addContact_opt, viewContacts_opt, deleteContacts_opt, editSOSMsg;
+    Toolbar toolbar;
+    ActionBar actionBar;
+    TextView toolbarTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sosmenu);
 
-        CardView addContact_opt = findViewById(R.id.addContact_option);
-        CardView viewContacts_opt = findViewById(R.id.viewContacts_option);
-        CardView deleteContacts_opt = findViewById(R.id.deleteContacts_option);
-        CardView editSOSMsg = findViewById(R.id.editMsg_option);
+        addContact_opt = findViewById(R.id.addContact_option);
+        viewContacts_opt = findViewById(R.id.viewContacts_option);
+        deleteContacts_opt = findViewById(R.id.deleteContacts_option);
+        editSOSMsg = findViewById(R.id.editMsg_option);
+        toolbar = findViewById(R.id.sos_toolbar);
+
+        configActionBar("SOS MENU");
 
         addContact_opt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,5 +59,28 @@ public class SOSMenuActivity extends AppCompatActivity {
                 startActivity(new Intent(SOSMenuActivity.this, SOSMessageActivity.class));
             }
         });
+    }
+
+    public void configActionBar(String title){
+        setSupportActionBar(toolbar);
+        actionBar = getSupportActionBar();
+        View customView = getLayoutInflater().inflate(R.layout.custom_toolbar_layout, null);
+        if(actionBar != null){
+            actionBar.setDisplayShowTitleEnabled(false);
+            actionBar.setDisplayShowCustomEnabled(true);
+            actionBar.setCustomView(customView);
+            actionBar.setDisplayHomeAsUpEnabled(true); //enable back button
+            toolbarTitle = customView.findViewById(R.id.toolBarTitle);
+            toolbarTitle.setText(title);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

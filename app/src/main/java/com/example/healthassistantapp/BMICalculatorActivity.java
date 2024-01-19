@@ -2,6 +2,7 @@ package com.example.healthassistantapp;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -9,20 +10,31 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 public class BMICalculatorActivity extends AppCompatActivity {
+
+    Toolbar toolbar;
+    ActionBar actionBar;
+    TextView toolbarTitle, resultArea;
+    EditText userHeight, userWeight;
+    Button calculateBtn, clearBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bmicalculator);
 
-        EditText userHeight = findViewById(R.id.userHeight_input);
-        EditText userWeight = findViewById(R.id.userWeight_input);
-        Button calculateBtn = findViewById(R.id.calculateBMI_btn);
-        Button clearBtn = findViewById(R.id.clear_btn);
-        TextView resultArea = findViewById(R.id.BMIResult);
+        userHeight = findViewById(R.id.userHeight_input);
+        userWeight = findViewById(R.id.userWeight_input);
+        calculateBtn = findViewById(R.id.calculateBMI_btn);
+        clearBtn = findViewById(R.id.clear_btn);
+        resultArea = findViewById(R.id.BMIResult);
+        toolbar = findViewById(R.id.bmi_toolbar);
+
+        configActionBar("BMI CALCULATOR");
         
         calculateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,5 +89,28 @@ public class BMICalculatorActivity extends AppCompatActivity {
 
     public void toastMsg(String message){
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    public void configActionBar(String title){
+        setSupportActionBar(toolbar);
+        actionBar = getSupportActionBar();
+        View customView = getLayoutInflater().inflate(R.layout.custom_toolbar_layout, null);
+        if(actionBar != null){
+            actionBar.setDisplayShowTitleEnabled(false);
+            actionBar.setDisplayShowCustomEnabled(true);
+            actionBar.setCustomView(customView);
+            actionBar.setDisplayHomeAsUpEnabled(true); //enable back button
+            toolbarTitle = customView.findViewById(R.id.toolBarTitle);
+            toolbarTitle.setText(title);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

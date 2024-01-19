@@ -5,22 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SOSMenuActivity">
-
-    <TextView
-        android:id="@+id/titleSOSMenu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:text="SOS MENU"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/sos_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="8dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
     <GridLayout
         android:id="@+id/SOSMenuGrid"
         android:layout_width="match_parent"
         android:layout_height="380dp"
-        android:layout_below="@+id/titleSOSMenu"
+        android:layout_below="@+id/sos_toolbar"
         android:layout_margin="20dp"
         android:columnCount="2"
         android:rowCount="2">

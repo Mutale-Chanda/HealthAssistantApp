@@ -6,21 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/titleHome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:text="Health Assistant App"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/main_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="8dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
     <GridLayout
         android:id="@+id/homeGrid"
         android:layout_width="match_parent"
         android:layout_height="380dp"
-        android:layout_below="@+id/titleHome"
+        android:layout_below="@+id/main_toolbar"
         android:layout_margin="20dp"
         android:columnCount="2"
         android:rowCount="2">

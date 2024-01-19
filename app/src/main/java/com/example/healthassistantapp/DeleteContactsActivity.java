@@ -1,9 +1,12 @@
 package com.example.healthassistantapp;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,8 +20,10 @@ public class DeleteContactsActivity extends AppCompatActivity {
     private RecyclerView deleteContactsRV;
     private DatabaseHelper db;
     private DeleteContactAdaptor deleteContactAdaptor;
-    TextView emptyText;
+    TextView emptyText, toolbarTitle;
     ImageView emptyImg;
+    Toolbar toolbar;
+    ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +34,12 @@ public class DeleteContactsActivity extends AppCompatActivity {
         deleteContactsRV = findViewById(R.id.deleteContactsRV);
         emptyImg = findViewById(R.id.emptyIconDel);
         emptyText = findViewById(R.id.emptyDeleteContactsTxt);
+        toolbar = findViewById(R.id.deleteContact_toolbar);
         deleteContactsRV.setHasFixedSize(true);
+
         loadContacts();
         toggleIconVisibility();
+        configActionBar("DELETE CONTACTS");
     }
 
     private void loadContacts() {
@@ -53,5 +61,28 @@ public class DeleteContactsActivity extends AppCompatActivity {
             emptyImg.setVisibility(View.GONE);
             emptyText.setVisibility(View.GONE);
         }
+    }
+
+    public void configActionBar(String title){
+        setSupportActionBar(toolbar);
+        actionBar = getSupportActionBar();
+        View customView = getLayoutInflater().inflate(R.layout.custom_toolbar_layout, null);
+        if(actionBar != null){
+            actionBar.setDisplayShowTitleEnabled(false);
+            actionBar.setDisplayShowCustomEnabled(true);
+            actionBar.setCustomView(customView);
+            actionBar.setDisplayHomeAsUpEnabled(true); //enable back button
+            toolbarTitle = customView.findViewById(R.id.toolBarTitle);
+            toolbarTitle.setText(title);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -1,9 +1,14 @@
 package com.example.healthassistantapp;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.healthassistantapp.database.DatabaseHelper;
@@ -16,6 +21,9 @@ public class SOSMessageActivity extends AppCompatActivity {
     TextInputEditText msgInput;
     Message storedMsg;
     DatabaseHelper db;
+    TextView toolbarTitle;
+    Toolbar toolbar;
+    ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +32,10 @@ public class SOSMessageActivity extends AppCompatActivity {
 
         saveMsgBtn = findViewById(R.id.saveMessage_btn);
         msgInput = findViewById(R.id.SOSMessage);
+        toolbar = findViewById(R.id.message_toolbar);
         db = new DatabaseHelper(this);
 
+        configActionBar("SOS MESSAGE");
         loadMessage();
 
         saveMsgBtn.setOnClickListener(new View.OnClickListener() {
@@ -59,6 +69,29 @@ public class SOSMessageActivity extends AppCompatActivity {
         }else{
             Toast.makeText(SOSMessageActivity.this, "Error updating message.", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void configActionBar(String title){
+        setSupportActionBar(toolbar);
+        actionBar = getSupportActionBar();
+        View customView = getLayoutInflater().inflate(R.layout.custom_toolbar_layout, null);
+        if(actionBar != null){
+            actionBar.setDisplayShowTitleEnabled(false);
+            actionBar.setDisplayShowCustomEnabled(true);
+            actionBar.setCustomView(customView);
+            actionBar.setDisplayHomeAsUpEnabled(true); //enable back button
+            toolbarTitle = customView.findViewById(R.id.toolBarTitle);
+            toolbarTitle.setText(title);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

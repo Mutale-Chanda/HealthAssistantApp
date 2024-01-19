@@ -1,11 +1,14 @@
 package com.example.healthassistantapp;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.healthassistantapp.adaptor.ContactAdaptor;
 import com.example.healthassistantapp.database.DatabaseHelper;
@@ -15,8 +18,10 @@ public class ViewContactsActivity extends AppCompatActivity {
     private RecyclerView contactRV;
     private DatabaseHelper db;
     private ContactAdaptor contactAdaptor;
-    TextView emptyText;
+    TextView emptyText, toolbarTitle;
     ImageView emptyImg;
+    Toolbar toolbar;
+    ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +32,11 @@ public class ViewContactsActivity extends AppCompatActivity {
         contactRV = findViewById(R.id.viewContactsRV);
         emptyImg = findViewById(R.id.emptyIcon);
         emptyText = findViewById(R.id.emptyContactsTxt);
+        toolbar = findViewById(R.id.viewContact_toolbar);
         contactRV.setHasFixedSize(true);
+
         loadContacts();
+        configActionBar("REGISTERED CONTACTS");
 
         if(db.getContactsCount() <= 0){
             emptyImg.setVisibility(View.VISIBLE);
@@ -48,5 +56,28 @@ public class ViewContactsActivity extends AppCompatActivity {
     protected void onResume(){
         super.onResume();
         loadContacts();
+    }
+
+    public void configActionBar(String title){
+        setSupportActionBar(toolbar);
+        actionBar = getSupportActionBar();
+        View customView = getLayoutInflater().inflate(R.layout.custom_toolbar_layout, null);
+        if(actionBar != null){
+            actionBar.setDisplayShowTitleEnabled(false);
+            actionBar.setDisplayShowCustomEnabled(true);
+            actionBar.setCustomView(customView);
+            actionBar.setDisplayHomeAsUpEnabled(true); //enable back button
+            toolbarTitle = customView.findViewById(R.id.toolBarTitle);
+            toolbarTitle.setText(title);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

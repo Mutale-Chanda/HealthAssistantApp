@@ -5,6 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DeleteContactsActivity">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/deleteContact_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="8dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
     <ImageView
         android:id="@+id/emptyIconDel"
@@ -28,6 +35,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/deleteContactsRV"
+        android:layout_below="@id/deleteContact_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

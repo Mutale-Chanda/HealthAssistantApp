@@ -5,6 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SOSMessageActivity">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/message_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="8dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
     <TextView
         android:id="@+id/titleSOSMessage"
@@ -20,10 +27,10 @@
         android:id="@+id/addContactNotice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/titleSOSMessage"
+        android:layout_below="@id/message_toolbar"
         android:layout_centerHorizontal="true"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="80dp"
         android:text="(This message will be sent including your current location to the registered contacts when you press the SOS button)"
         android:textAlignment="center"
         android:textColor="#3e0000"

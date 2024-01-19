@@ -5,21 +5,19 @@
     android:layout_height="match_parent"
     tools:context=".BMICalculatorActivity">
 
-    <TextView
-        android:id="@+id/titleBMICalculator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:text="BMI CALCULATOR"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/bmi_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="8dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
     <LinearLayout
         android:id="@+id/userHeightSpace"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/titleBMICalculator"
+        android:layout_below="@+id/bmi_toolbar"
         android:layout_centerHorizontal="true"
         android:layout_margin="32dp"
         android:orientation="horizontal">
