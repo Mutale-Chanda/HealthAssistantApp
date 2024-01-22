@@ -8,7 +8,6 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.view.View;
@@ -19,7 +18,6 @@ import com.example.healthassistantapp.database.DatabaseHelper;
 import com.example.healthassistantapp.model.Contact;
 import com.example.healthassistantapp.model.Message;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SOSMainActivity extends AppCompatActivity {
@@ -54,7 +52,7 @@ public class SOSMainActivity extends AppCompatActivity {
                 loadMessage();
 
                 if(contactList.size() > 0) {
-                    requestPermission();
+                    requestPermissionAndSendSMS();
                 }else{
                     //show error dialog for empty contact list || toast
                     Toast.makeText(getApplicationContext(), "Error, you have not registered any contacts.", Toast.LENGTH_SHORT).show();
@@ -63,12 +61,11 @@ public class SOSMainActivity extends AppCompatActivity {
         });
     }
 
-    private void requestPermission(){
+    private void requestPermissionAndSendSMS(){
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS}, PERMISSION_REQUEST_CODE);
         }else{
             sendMessage();
-            Toast.makeText(getApplicationContext(), "Message sent successfully.", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -90,13 +87,17 @@ public class SOSMainActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        if(requestCode == PERMISSION_REQUEST_CODE) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                //permission is granted
-                sendMessage();
-            } else {
-                //when permission is denied
-                Toast.makeText(this, "Permission denied. Message not sent.", Toast.LENGTH_SHORT).show();
+        if (requestCode == PERMISSION_REQUEST_CODE) {
+            for (int i = 0; i < permissions.length; i++) {
+                String permission = permissions[i];
+                int grantResult = grantResults[i];
+                if (permission.equals(Manifest.permission.SEND_SMS) && grantResult == PackageManager.PERMISSION_GRANTED) {
+                    if (grantResult == PackageManager.PERMISSION_GRANTED) {
+                        sendMessage();
+                    } else {
+                        Toast.makeText(this, "Permission denied. Message not sent.", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
         }
     }
