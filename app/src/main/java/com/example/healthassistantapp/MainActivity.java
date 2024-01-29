@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         healthFacilities_opt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),"nearby locations clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"coming soon.", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         aboutApp_opt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),"a clicked", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this, AboutActivity.class));
             }
         });
     }

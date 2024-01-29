@@ -5,6 +5,7 @@
     <uses-feature
         android:name="android.hardware.telephony"
         android:required="false" />
+
     <uses-permission android:name="android.permission.SEND_SMS" />
 
     <application
@@ -19,41 +20,44 @@
         android:theme="@style/Theme.HealthAssistantApp"
         tools:targetApi="31">
         <activity
-            android:name=".DeleteContactsActivity"
-            android:screenOrientation="sensorPortrait"
+            android:name=".AboutActivity"
             android:exported="false" />
+        <activity
+            android:name=".DeleteContactsActivity"
+            android:exported="false"
+            android:screenOrientation="sensorPortrait" />
         <activity
             android:name=".ViewContactsActivity"
-            android:screenOrientation="sensorPortrait"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="sensorPortrait" />
         <activity
             android:name=".SOSMessageActivity"
-            android:screenOrientation="sensorPortrait"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="sensorPortrait" />
         <activity
             android:name=".RegisterContactActivity"
-            android:screenOrientation="sensorPortrait"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="sensorPortrait" />
         <activity
             android:name=".BMICalculatorActivity"
-            android:screenOrientation="sensorPortrait"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="sensorPortrait" />
         <activity
             android:name=".SOSMainActivity"
-            android:screenOrientation="sensorPortrait"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="sensorPortrait" />
         <activity
             android:name=".SOSMenuActivity"
-            android:screenOrientation="sensorPortrait"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="sensorPortrait" />
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="sensorPortrait"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="sensorPortrait" />
         <activity
             android:name=".SplashActivity"
-            android:screenOrientation="sensorPortrait"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="sensorPortrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
