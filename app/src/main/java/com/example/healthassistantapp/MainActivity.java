@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         BMI_opt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //navigate to the BMICalculator page(view)
                 startActivity(new Intent(MainActivity.this, BMICalculatorActivity.class));
             }
         });
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         healthFacilities_opt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //just shows toast message due to technical issues activating the google api to show the map.
                 Toast.makeText(getApplicationContext(),"coming soon.", Toast.LENGTH_SHORT).show();
             }
         });

@@ -40,6 +40,7 @@ public class DeleteContactsActivity extends AppCompatActivity {
     }
 
     private void loadContacts() {
+        //load contacts into the recycler view from the database
         deleteContactAdaptor = new DeleteContactAdaptor(this, db.getAllContacts(), emptyText, emptyImg);
         deleteContactsRV.setAdapter(deleteContactAdaptor);
     }
@@ -51,6 +52,7 @@ public class DeleteContactsActivity extends AppCompatActivity {
     }
 
     private void toggleIconVisibility(){
+        //toggle empty drawer icon into view when contact list is empty
         if(db.getContactsCount() == 0){
             emptyImg.setVisibility(View.VISIBLE);
             emptyText.setVisibility(View.VISIBLE);

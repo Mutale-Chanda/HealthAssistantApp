@@ -71,6 +71,7 @@ public class BMICalculatorActivity extends AppCompatActivity {
     }
 
     public float calculateBMI(float height, float weight){
+        //calculate BMI and round it to 2 decimal places
         float bmi = weight / (height * height);
         float rounded = Math.round(bmi * 10);
         return rounded / 10;

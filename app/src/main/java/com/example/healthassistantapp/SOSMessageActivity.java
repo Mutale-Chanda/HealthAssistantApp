@@ -63,7 +63,6 @@ public class SOSMessageActivity extends AppCompatActivity {
     }
 
     private void statusBasedToast(boolean isUpdated){
-        // status code 1 means success
         if(isUpdated){
             Toast.makeText(SOSMessageActivity.this, "Message updated successfully.", Toast.LENGTH_SHORT).show();
         }else{
