@@ -72,12 +72,4 @@ public class DeleteContactsActivity extends AppCompatActivity {
         findViewById(R.id.back_btn).setOnClickListener(view -> onBackPressed());
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item){
-//        if (item.getItemId() == android.R.id.home) {
-//            onBackPressed();
-//            return true;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
 }
