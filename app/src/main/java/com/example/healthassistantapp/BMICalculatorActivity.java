@@ -42,7 +42,7 @@ public class BMICalculatorActivity extends AppCompatActivity {
                 String heightStr = userHeight.getText().toString().trim();
                 String weightStr = userWeight.getText().toString().trim();
 
-                hideKeyboard(userHeight, userWeight);
+                hideKeyboard(userHeight);
 
                 if(isValid(heightStr,weightStr)){
                     float userHeight = Float.parseFloat(heightStr);
@@ -52,7 +52,6 @@ public class BMICalculatorActivity extends AppCompatActivity {
                         toastMsg("Height can not be Zero.");
                     }else{
                         float result = calculateBMI(userHeight,userWeight);
-                        toastMsg("Result: " + result);
                         resultArea.setText(String.valueOf(result));
                     }
                 }else{
@@ -72,7 +71,7 @@ public class BMICalculatorActivity extends AppCompatActivity {
     }
 
     public float calculateBMI(float height, float weight){
-        float bmi = weight / (height * height); //h: 180 && w:55 BMI:17
+        float bmi = weight / (height * height);
         float rounded = Math.round(bmi * 10);
         return rounded / 10;
     }
@@ -81,36 +80,33 @@ public class BMICalculatorActivity extends AppCompatActivity {
         return !value1.isEmpty() && !value2.isEmpty();
     }
 
-    public void hideKeyboard(EditText view1, EditText view2){
+    public void hideKeyboard(EditText view){
         InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(view1.getWindowToken(), 0);
-        inputMethodManager.hideSoftInputFromWindow(view2.getWindowToken(), 0);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
     public void toastMsg(String message){
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 
-    public void configActionBar(String title){
+    public void configActionBar(String title) {
         setSupportActionBar(toolbar);
         actionBar = getSupportActionBar();
-        View customView = getLayoutInflater().inflate(R.layout.custom_toolbar_layout, null);
-        if(actionBar != null){
+
+        if (actionBar != null) {
             actionBar.setDisplayShowTitleEnabled(false);
-            actionBar.setDisplayShowCustomEnabled(true);
-            actionBar.setCustomView(customView);
-            actionBar.setDisplayHomeAsUpEnabled(true); //enable back button
-            toolbarTitle = customView.findViewById(R.id.toolBarTitle);
+            toolbarTitle = findViewById(R.id.toolBarTitle);
             toolbarTitle.setText(title);
         }
+        findViewById(R.id.back_btn).setOnClickListener(view -> onBackPressed());
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-        if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item){
+//        if (item.getItemId() == android.R.id.home) {
+//            onBackPressed();
+//            return true;
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 }

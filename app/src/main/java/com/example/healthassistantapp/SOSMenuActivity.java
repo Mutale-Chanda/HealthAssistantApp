@@ -61,26 +61,24 @@ public class SOSMenuActivity extends AppCompatActivity {
         });
     }
 
-    public void configActionBar(String title){
+    public void configActionBar(String title) {
         setSupportActionBar(toolbar);
         actionBar = getSupportActionBar();
-        View customView = getLayoutInflater().inflate(R.layout.custom_toolbar_layout, null);
-        if(actionBar != null){
+
+        if (actionBar != null) {
             actionBar.setDisplayShowTitleEnabled(false);
-            actionBar.setDisplayShowCustomEnabled(true);
-            actionBar.setCustomView(customView);
-            actionBar.setDisplayHomeAsUpEnabled(true); //enable back button
-            toolbarTitle = customView.findViewById(R.id.toolBarTitle);
+            toolbarTitle = findViewById(R.id.toolBarTitle);
             toolbarTitle.setText(title);
         }
+        findViewById(R.id.back_btn).setOnClickListener(view -> onBackPressed());
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-        if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item){
+//        if (item.getItemId() == android.R.id.home) {
+//            onBackPressed();
+//            return true;
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 }

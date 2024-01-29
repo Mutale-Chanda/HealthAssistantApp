@@ -10,8 +10,27 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        android:elevation="8dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
+        android:elevation="8dp">
+
+        <ImageView
+            android:id="@+id/back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:background="?android:attr/selectableItemBackground"
+            android:contentDescription="@string/back_arrow_button"
+            android:paddingHorizontal="16dp"
+            android:src="@drawable/icon_back" />
+
+        <TextView
+            android:id="@+id/toolBarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/app_name"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+    </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
         android:id="@+id/userHeightSpace"
@@ -25,7 +44,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="HEIGHT(M) :"
+            android:text="@string/height_m"
             android:textStyle="bold" />
 
         <EditText
@@ -33,15 +52,15 @@
             android:layout_width="80dp"
             android:layout_height="48dp"
             android:layout_marginHorizontal="8dp"
-            android:hint="000"
-            android:inputType="numberDecimal"
-            android:autofillHints="Enter your height in centimeters" />
+            android:autofillHints="Enter your height in centimeters"
+            android:hint="@string/_0_00"
+            android:inputType="numberDecimal" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_height"
-            android:contentDescription="height icon" />
+            android:contentDescription="@string/height_icon"
+            android:src="@drawable/icon_height" />
     </LinearLayout>
 
     <LinearLayout
@@ -56,7 +75,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="WEIGHT(KG) :"
+            android:text="@string/weight_kg"
             android:textStyle="bold" />
 
         <EditText
@@ -64,15 +83,15 @@
             android:layout_width="80dp"
             android:layout_height="48dp"
             android:layout_marginHorizontal="8dp"
-            android:hint="000"
-            android:inputType="numberDecimal"
-            android:autofillHints="Enter your weight in Kg" />
+            android:autofillHints="Enter your weight in Kg"
+            android:hint="@string/_000"
+            android:inputType="numberDecimal" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_weight"
-            android:contentDescription="weight scale icon" />
+            android:contentDescription="@string/weight_scale_icon"
+            android:src="@drawable/icon_weight" />
     </LinearLayout>
 
 
@@ -80,26 +99,24 @@
         android:id="@+id/buttons_area"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/userWeightSpace"
         android:layout_centerHorizontal="true"
-        android:layout_marginVertical="16dp"
-        android:layout_below="@+id/userWeightSpace">
+        android:layout_marginVertical="16dp">
 
         <Button
             android:id="@+id/calculateBMI_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/userWeightSpace"
-            android:backgroundTint="#166d3b"
-            android:text="CALCULATE" />
+            android:backgroundTint="@color/green"
+            android:text="@string/calculate" />
 
         <Button
             android:id="@+id/clear_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/calculateBMI_btn"
-            android:layout_marginLeft="4dp"
-            android:backgroundTint="#7c0000"
-            android:text="CLEAR" />
+            android:layout_marginStart="4dp"
+            android:backgroundTint="@color/red"
+            android:text="@string/clear" />
     </LinearLayout>
 
     <TextView
@@ -109,7 +126,7 @@
         android:layout_below="@id/buttons_area"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="16dp"
-        android:text="YOUR BODY MASS INDEX(BMI) IS:"
+        android:text="@string/bmi_result_prefix"
         android:textStyle="bold" />
 
     <TextView
@@ -119,7 +136,7 @@
         android:layout_below="@id/BMIResultTitle"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="16dp"
-        android:text="-"
+        android:text="@string/blank"
         android:textSize="32sp"
         android:textStyle="bold" />
 
@@ -131,9 +148,9 @@
         android:layout_centerHorizontal="true"
         android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="16dp"
-        android:text="Please take not that normal BMI is between 18.5 to 25. Anything above is overweight and anything below is underweight."
+        android:text="@string/bmi_info"
         android:textAlignment="center"
-        android:textColor="#3e0000"
+        android:textColor="@color/info"
         android:textSize="14sp"
         android:textStyle="italic" />
 

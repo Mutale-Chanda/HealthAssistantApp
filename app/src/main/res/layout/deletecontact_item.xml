@@ -17,7 +17,7 @@ app:cardUseCompatPadding="true">
         android:layout_centerVertical="true"
         android:layout_marginStart="18dp"
         android:layout_marginEnd="8dp"
-        android:text="5"
+        android:text="@string/placeholder_Index"
         android:textColor="@color/black"
         android:textSize="50sp" />
 
@@ -32,7 +32,7 @@ app:cardUseCompatPadding="true">
             android:id="@+id/deleteContactName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Man Chanda"
+            android:text="@string/placeholder_Name"
             android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -41,7 +41,7 @@ app:cardUseCompatPadding="true">
             android:id="@+id/deleteContactNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0976731006"
+            android:text="@string/placeholder_Number"
             android:textColor="@color/black"
             android:textSize="16sp" />
     </LinearLayout>
@@ -52,6 +52,7 @@ app:cardUseCompatPadding="true">
         android:src="@drawable/icon_delete"
         android:layout_alignParentEnd="true"
         android:layout_centerInParent="true"
-        android:layout_marginEnd="8dp"/>
+        android:layout_marginEnd="8dp"
+        android:contentDescription="@string/delete_icon" />
 </RelativeLayout>
 </androidx.cardview.widget.CardView>

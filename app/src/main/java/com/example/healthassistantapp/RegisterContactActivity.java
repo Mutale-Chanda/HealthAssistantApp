@@ -38,7 +38,7 @@ public class RegisterContactActivity extends AppCompatActivity {
         contactNumber = findViewById(R.id.contactNumber);
         saveContact = findViewById(R.id.saveContact_btn);
         toolbar = findViewById(R.id.addContact_toolbar);
-        db = new DatabaseHelper(RegisterContactActivity.this);
+        db = DatabaseHelper.getInstance(getApplicationContext());
 
         configActionBar("REGISTER CONTACT");
 
@@ -48,15 +48,15 @@ public class RegisterContactActivity extends AppCompatActivity {
                 String name = contactName.getText().toString().trim();
                 String number = contactNumber.getText().toString().trim();
 
-                hideKeyboard(contactName, contactNumber);
+                hideKeyboard(contactNumber);
 
                 if(isValid(name,number)){
                     if(number.length() < 10 || number.length() > 12){
                         toastMsg("contact number is invalid");
                     }else{
                         Contact contact = new Contact(name, number);
-                        boolean saveStatus = db.addContact(contact);
-                        if(saveStatus){
+                        boolean isSaved = db.addContact(contact);
+                        if(isSaved){
                             clearInputs();
                             startActivity(new Intent(RegisterContactActivity.this, ViewContactsActivity.class));
                         }
@@ -73,10 +73,9 @@ public class RegisterContactActivity extends AppCompatActivity {
         return !value1.isEmpty() && !value2.isEmpty();
     }
 
-    public void hideKeyboard(EditText view1, EditText view2){
+    public void hideKeyboard(EditText view){
         InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(view1.getWindowToken(), 0);
-        inputMethodManager.hideSoftInputFromWindow(view2.getWindowToken(), 0);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
     public void toastMsg(String message){
@@ -88,27 +87,25 @@ public class RegisterContactActivity extends AppCompatActivity {
         contactNumber.setText("");
     }
 
-    public void configActionBar(String title){
+    public void configActionBar(String title) {
         setSupportActionBar(toolbar);
         actionBar = getSupportActionBar();
-        View customView = getLayoutInflater().inflate(R.layout.custom_toolbar_layout, null);
-        if(actionBar != null){
+
+        if (actionBar != null) {
             actionBar.setDisplayShowTitleEnabled(false);
-            actionBar.setDisplayShowCustomEnabled(true);
-            actionBar.setCustomView(customView);
-            actionBar.setDisplayHomeAsUpEnabled(true); //enable back button
-            toolbarTitle = customView.findViewById(R.id.toolBarTitle);
+            toolbarTitle = findViewById(R.id.toolBarTitle);
             toolbarTitle.setText(title);
         }
+        findViewById(R.id.back_btn).setOnClickListener(view -> onBackPressed());
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-        if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item){
+//        if (item.getItemId() == android.R.id.home) {
+//            onBackPressed();
+//            return true;
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
 }

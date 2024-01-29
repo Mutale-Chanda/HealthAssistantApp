@@ -36,7 +36,7 @@ public class SOSMainActivity extends AppCompatActivity {
 
         SOSMenu_btn = findViewById(R.id.SOSMenu_btn);
         SOS_btn = findViewById(R.id.SOS_btn);
-        db = new DatabaseHelper(this);
+        db = DatabaseHelper.getInstance(getApplicationContext());
 
         SOSMenu_btn.setOnClickListener(new View.OnClickListener() {
             @Override

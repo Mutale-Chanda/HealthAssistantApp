@@ -11,8 +11,16 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        android:elevation="8dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
+        android:elevation="8dp">
+        <TextView
+            android:id="@+id/toolBarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/app_name"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+    </androidx.appcompat.widget.Toolbar>
 
     <GridLayout
         android:id="@+id/homeGrid"
@@ -48,12 +56,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
+                    android:contentDescription="@string/bmi_icon"
                     android:src="@drawable/bmi_64" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="BMI CALCULATOR"
+                    android:text="@string/bmi_calculator"
                     android:textAlignment="center"
                     android:textStyle="bold" />
 
@@ -85,12 +94,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
+                    android:contentDescription="@string/maps_icon"
                     android:src="@drawable/map_64" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="HEALTH LOCATION"
+                    android:text="@string/health_location"
                     android:textAlignment="center"
                     android:textStyle="bold" />
 
@@ -122,12 +132,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
+                    android:contentDescription="@string/sos_icon"
                     android:src="@drawable/alarm_64" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="SOS SERVICE"
+                    android:text="@string/sos_service"
                     android:textAlignment="center"
                     android:textStyle="bold" />
 
@@ -159,27 +170,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
+                    android:contentDescription="@string/about_icon"
                     android:src="@drawable/about_64" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ABOUT"
+                    android:text="@string/about"
                     android:textAlignment="center"
                     android:textStyle="bold" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </GridLayout>
-
-    <TextView
-        android:id="@+id/aboutDev_TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginVertical="30dp"
-        android:text="ABOUT DEVELOPER"
-        android:textSize="12sp"
-        android:textStyle="bold" />
 </RelativeLayout>

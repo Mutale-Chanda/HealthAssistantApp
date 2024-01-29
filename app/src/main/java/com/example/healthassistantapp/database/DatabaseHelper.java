@@ -16,9 +16,10 @@ import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private final Context context;
+    private static volatile DatabaseHelper instance;
+    private Context context;
     private static final String DB_NAME = "HealthAssistantApp.db";
-    private static final int DB_VERSION = 4;
+    private static final int DB_VERSION = 1;
 
     private static final String TABLE_NAME = "contacts";
     private static final String COLUMN_ID = "_id";
@@ -27,11 +28,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String MSG_TABLE_NAME = "sos_message";
     private static final String MSG_COLUMN_ID = "_id";
-    public static final String MSG_COLUMN_MSG = "message";
+    private static final String MSG_COLUMN_MSG = "message";
 
-    public DatabaseHelper(@Nullable Context context) {
+    private DatabaseHelper(@Nullable Context context) {
         super(context, DB_NAME, null, DB_VERSION);
         this.context = context;
+    }
+
+    public static DatabaseHelper getInstance(@Nullable Context context){
+        if(instance == null){
+            synchronized (DatabaseHelper.class){
+                if(instance == null)
+                    instance = new DatabaseHelper(context);
+            }
+        }else{
+            instance.context = context;
+        }
+        return instance;
     }
 
     @Override
@@ -62,16 +75,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public int updateMsg(@NonNull Message message) {
+    public boolean updateMsg(@NonNull Message message) {
         SQLiteDatabase db = this.getWritableDatabase();
-        int status;
+        int rowsUpdated;
 
         ContentValues values = new ContentValues();
         values.put(MSG_COLUMN_MSG, message.getMessage());
-        status = db.update(MSG_TABLE_NAME, values, MSG_COLUMN_ID + " = ?", new String[]{"1"});
+        rowsUpdated = db.update(MSG_TABLE_NAME, values, MSG_COLUMN_ID + " = ?", new String[]{"1"});
         db.close();
 
-        return status;
+        if(rowsUpdated <= 0){
+            return false;
+        }else{
+            return true;
+        }
     }
 
     public Message getStoredMsg() {
@@ -93,6 +110,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean addContact(@NonNull Contact contact) {
         SQLiteDatabase db = this.getWritableDatabase();
 
+        //limit the number of stored contacts to 3
         if(getContactsCount() < 3) {
             if(!isDuplicate(contact.getContactNumber())) {
                 ContentValues values = new ContentValues();

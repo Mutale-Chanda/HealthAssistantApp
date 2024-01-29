@@ -5,40 +5,62 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ViewContactsActivity">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/viewContact_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        android:elevation="8dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
+        android:elevation="8dp">
+
+        <ImageView
+            android:id="@+id/back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:background="?android:attr/selectableItemBackground"
+            android:contentDescription="@string/back_arrow_button"
+            android:paddingHorizontal="16dp"
+            android:src="@drawable/icon_back" />
+
+        <TextView
+            android:id="@+id/toolBarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/app_name"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+    </androidx.appcompat.widget.Toolbar>
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/empty_24"
-        android:layout_centerInParent="true"
         android:id="@+id/emptyIcon"
-        android:alpha="0.1"
-        android:visibility="gone"/>
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="No Contacts"
-        android:textSize="20sp"
+        android:layout_centerInParent="true"
+        android:alpha="0.1"
+        android:contentDescription="@string/empty_drawer_icon"
+        android:src="@drawable/empty_24"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/emptyContactsTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/emptyIcon"
         android:layout_centerHorizontal="true"
-        android:id="@+id/emptyContactsTxt"
         android:alpha="0.4"
-        android:visibility="gone"/>
+        android:text="@string/no_contacts"
+        android:textSize="20sp"
+        android:visibility="gone" />
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/viewContactsRV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:layout_below="@+id/viewContact_toolbar"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/contact_item" />
 
 

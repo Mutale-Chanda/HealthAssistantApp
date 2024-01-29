@@ -10,6 +10,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.healthassistantapp.adaptor.ContactAdaptor;
 import com.example.healthassistantapp.database.DatabaseHelper;
 
@@ -28,7 +29,7 @@ public class ViewContactsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_contacts);
 
-        db = new DatabaseHelper(this);
+        db = DatabaseHelper.getInstance(getApplicationContext());
         contactRV = findViewById(R.id.viewContactsRV);
         emptyImg = findViewById(R.id.emptyIcon);
         emptyText = findViewById(R.id.emptyContactsTxt);
@@ -38,46 +39,44 @@ public class ViewContactsActivity extends AppCompatActivity {
         loadContacts();
         configActionBar("REGISTERED CONTACTS");
 
-        if(db.getContactsCount() <= 0){
+        if (db.getContactsCount() <= 0) {
             emptyImg.setVisibility(View.VISIBLE);
             emptyText.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             emptyImg.setVisibility(View.GONE);
             emptyText.setVisibility(View.GONE);
         }
     }
 
     private void loadContacts() {
-        contactAdaptor = new ContactAdaptor(this,db.getAllContacts());
+        contactAdaptor = new ContactAdaptor(this, db.getAllContacts());
         contactRV.setAdapter(contactAdaptor);
     }
 
     @Override
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
         loadContacts();
     }
 
-    public void configActionBar(String title){
+    public void configActionBar(String title) {
         setSupportActionBar(toolbar);
         actionBar = getSupportActionBar();
-        View customView = getLayoutInflater().inflate(R.layout.custom_toolbar_layout, null);
-        if(actionBar != null){
+
+        if (actionBar != null) {
             actionBar.setDisplayShowTitleEnabled(false);
-            actionBar.setDisplayShowCustomEnabled(true);
-            actionBar.setCustomView(customView);
-            actionBar.setDisplayHomeAsUpEnabled(true); //enable back button
-            toolbarTitle = customView.findViewById(R.id.toolBarTitle);
+            toolbarTitle = findViewById(R.id.toolBarTitle);
             toolbarTitle.setText(title);
         }
+        findViewById(R.id.back_btn).setOnClickListener(view -> onBackPressed());
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-        if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        if (item.getItemId() == android.R.id.home) {
+//            onBackPressed();
+//            return true;
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 }

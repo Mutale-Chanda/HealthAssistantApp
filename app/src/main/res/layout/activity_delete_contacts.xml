@@ -5,13 +5,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DeleteContactsActivity">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/deleteContact_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        android:elevation="8dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
+        android:elevation="8dp">
+
+        <ImageView
+            android:id="@+id/back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:background="?android:attr/selectableItemBackground"
+            android:contentDescription="@string/back_arrow_button"
+            android:paddingHorizontal="16dp"
+            android:src="@drawable/icon_back" />
+
+        <TextView
+            android:id="@+id/toolBarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/app_name"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+    </androidx.appcompat.widget.Toolbar>
 
     <ImageView
         android:id="@+id/emptyIconDel"
@@ -19,6 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:alpha="0.1"
+        android:contentDescription="@string/empty_drawer_icon"
         android:src="@drawable/empty_24"
         android:visibility="gone" />
 
@@ -29,15 +50,15 @@
         android:layout_below="@+id/emptyIconDel"
         android:layout_centerHorizontal="true"
         android:alpha="0.4"
-        android:text="No Contacts"
+        android:text="@string/no_contacts"
         android:textSize="20sp"
         android:visibility="gone" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/deleteContactsRV"
-        android:layout_below="@id/deleteContact_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/deleteContact_toolbar"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/deletecontact_item" />
 </RelativeLayout>

@@ -1,17 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RegisterContactActivity">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/addContact_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        android:elevation="8dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
+        android:elevation="8dp">
+
+        <ImageView
+            android:id="@+id/back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:background="?android:attr/selectableItemBackground"
+            android:contentDescription="@string/back_arrow_button"
+            android:paddingHorizontal="16dp"
+            android:src="@drawable/icon_back" />
+
+        <TextView
+            android:id="@+id/toolBarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/app_name"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+    </androidx.appcompat.widget.Toolbar>
 
     <TextView
         android:id="@+id/addContactNotice"
@@ -21,9 +40,9 @@
         android:layout_centerHorizontal="true"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="100dp"
-        android:text="(Please note that you can register upto 3 contacts.)"
+        android:text="@string/add_contact_info"
         android:textAlignment="center"
-        android:textColor="#3e0000"
+        android:textColor="@color/info"
         android:textSize="14sp"
         android:textStyle="italic" />
 
@@ -41,14 +60,14 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:hint="Name">
+            android:hint="@string/name">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/contactName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLength="50"
-                android:inputType="text" />
+                android:inputType="text"
+                android:maxLength="50" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -58,26 +77,26 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="6dp"
             android:layout_marginEnd="16dp"
-            android:hint="Number">
+            android:hint="@string/number">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/contactNumber"
                 android:layout_width="match_parent"
-                android:maxLength="12"
                 android:layout_height="wrap_content"
-                android:inputType="phone" />
+                android:inputType="phone"
+                android:maxLength="12" />
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
     <Button
         android:id="@+id/saveContact_btn"
         android:layout_width="match_parent"
-        android:layout_marginHorizontal="16dp"
-        android:paddingVertical="12dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/contactForm"
-        android:backgroundTint="#166d3b"
         android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="16dp"
         android:layout_marginVertical="16dp"
-        android:text="SAVE" />
+        android:backgroundTint="@color/green"
+        android:paddingVertical="12dp"
+        android:text="@string/save" />
 </RelativeLayout>

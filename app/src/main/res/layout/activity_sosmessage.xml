@@ -5,13 +5,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SOSMessageActivity">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/message_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        android:elevation="8dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
+        android:elevation="8dp">
+
+        <ImageView
+            android:id="@+id/back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:background="?android:attr/selectableItemBackground"
+            android:contentDescription="@string/back_arrow_button"
+            android:paddingHorizontal="16dp"
+            android:src="@drawable/icon_back" />
+
+        <TextView
+            android:id="@+id/toolBarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/app_name"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+    </androidx.appcompat.widget.Toolbar>
 
     <TextView
         android:id="@+id/titleSOSMessage"
@@ -19,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:text="SOS MESSAGE"
+        android:text="@string/sos_message"
         android:textSize="30sp"
         android:textStyle="bold" />
 
@@ -31,9 +51,9 @@
         android:layout_centerHorizontal="true"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="80dp"
-        android:text="(This message will be sent including your current location to the registered contacts when you press the SOS button)"
+        android:text="@string/sos_meesage_info"
         android:textAlignment="center"
-        android:textColor="#3e0000"
+        android:textColor="@color/info"
         android:textSize="14sp"
         android:textStyle="italic" />
 
@@ -46,7 +66,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:hint="SOS Message"
+        android:hint="@string/sos_message"
         app:counterEnabled="true"
         app:counterMaxLength="200">
 
@@ -72,7 +92,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginHorizontal="16dp"
         android:layout_marginVertical="16dp"
-        android:backgroundTint="#166d3b"
+        android:backgroundTint="@color/green"
         android:paddingVertical="12dp"
-        android:text="SAVE" />
+        android:text="@string/save" />
 </RelativeLayout>

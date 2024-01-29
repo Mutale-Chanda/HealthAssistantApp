@@ -28,7 +28,7 @@ public class DeleteContactAdaptor extends RecyclerView.Adapter<DeleteContactView
     public DeleteContactAdaptor(Context context, List<Contact> contactList, TextView textView, ImageView icon) {
         this.context = context;
         this.contactList = contactList;
-        db = new DatabaseHelper(context);
+        db = DatabaseHelper.getInstance(context);
         emptyImg = icon;
         emptyText = textView;
     }

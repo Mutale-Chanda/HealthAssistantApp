@@ -5,13 +5,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SOSMenuActivity">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/sos_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        android:elevation="8dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
+        android:elevation="8dp">
+
+        <ImageView
+            android:id="@+id/back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:background="?android:attr/selectableItemBackground"
+            android:contentDescription="@string/back_arrow_button"
+            android:paddingHorizontal="16dp"
+            android:src="@drawable/icon_back" />
+
+        <TextView
+            android:id="@+id/toolBarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/app_name"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+    </androidx.appcompat.widget.Toolbar>
 
     <GridLayout
         android:id="@+id/SOSMenuGrid"
@@ -47,12 +67,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
+                    android:contentDescription="@string/plus_icon"
                     android:src="@drawable/icon_add" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ADD CONTACT"
+                    android:text="@string/add_contact"
                     android:textAlignment="center"
                     android:textStyle="bold" />
 
@@ -84,12 +105,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
+                    android:contentDescription="@string/view_icon"
                     android:src="@drawable/icon_view" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="VIEW CONTACTS"
+                    android:text="@string/view_contacts"
                     android:textAlignment="center"
                     android:textStyle="bold" />
 
@@ -121,12 +143,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
+                    android:contentDescription="@string/delete_icon"
                     android:src="@drawable/icon_delete_outline" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="DELETE CONTACTS"
+                    android:text="@string/delete_contacts"
                     android:textAlignment="center"
                     android:textStyle="bold" />
 
@@ -158,12 +181,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
+                    android:contentDescription="@string/edit_icon"
                     android:src="@drawable/icon_edit" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="EDIT SOS MESSAGE"
+                    android:text="@string/edit_sos_message"
                     android:textAlignment="center"
                     android:textStyle="bold" />
 

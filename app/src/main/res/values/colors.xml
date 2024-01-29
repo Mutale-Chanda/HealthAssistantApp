@@ -3,4 +3,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="bg_dark">#E4E4E4C9</color>
+    <color name="red">#990000</color>
+    <color name="info">#3e0000</color>
+    <color name="green">#166d3b</color>
+    <color name="blue">#034c81</color>
 </resources>
