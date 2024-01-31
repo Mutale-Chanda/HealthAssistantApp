@@ -35,25 +35,22 @@
             android:textStyle="bold" />
     </androidx.appcompat.widget.Toolbar>
 
-    <GridLayout
+    <LinearLayout
         android:id="@+id/SOSMenuGrid"
         android:layout_width="match_parent"
-        android:layout_height="380dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/sos_toolbar"
-        android:layout_margin="20dp"
-        android:columnCount="2"
-        android:rowCount="2">
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="16dp"
+        android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/addContact_option"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_row="0"
-            android:layout_rowWeight="1"
-            android:layout_column="0"
-            android:layout_columnWeight="1"
-            android:layout_gravity="fill"
-            android:layout_margin="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginHorizontal="8dp"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp">
@@ -61,14 +58,15 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_gravity="center_vertical"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:padding="12dp"
+                android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginEnd="4dp"
                     android:contentDescription="@string/plus_icon"
                     android:src="@drawable/icon_add" />
 
@@ -84,14 +82,10 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/viewContacts_option"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_row="0"
-            android:layout_rowWeight="1"
-            android:layout_column="1"
-            android:layout_columnWeight="1"
-            android:layout_gravity="fill"
-            android:layout_margin="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginHorizontal="8dp"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp">
@@ -99,14 +93,16 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_gravity="center_vertical"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:padding="12dp"
+                android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginHorizontal="4dp"
                     android:contentDescription="@string/view_icon"
                     android:src="@drawable/icon_view" />
 
@@ -122,14 +118,10 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/deleteContacts_option"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_row="1"
-            android:layout_rowWeight="1"
-            android:layout_column="0"
-            android:layout_columnWeight="1"
-            android:layout_gravity="fill"
-            android:layout_margin="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginHorizontal="8dp"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp">
@@ -137,14 +129,15 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_gravity="center_vertical"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:padding="12dp"
+                android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginEnd="4dp"
                     android:contentDescription="@string/delete_icon"
                     android:src="@drawable/icon_delete_outline" />
 
@@ -160,14 +153,10 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/editMsg_option"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_row="1"
-            android:layout_rowWeight="1"
-            android:layout_column="1"
-            android:layout_columnWeight="1"
-            android:layout_gravity="fill"
-            android:layout_margin="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginHorizontal="8dp"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp">
@@ -175,14 +164,16 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_gravity="center_vertical"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:padding="12dp"
+                android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginHorizontal="4dp"
                     android:contentDescription="@string/edit_icon"
                     android:src="@drawable/icon_edit" />
 
@@ -195,7 +186,7 @@
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
-    </GridLayout>
-
-
+    </LinearLayout>
 </RelativeLayout>
+
+
